@@ -1,0 +1,21 @@
+
+  {
+    "email": "",
+    "password": "",
+    "imap_server": "imap.gmail.com",
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "categories": {
+        "work": ["@company.com", "project", "meeting", "deadline", "report"],
+        "personal": ["@family.com", "friend", "party", "gathering", "hangout"],
+        "promotions": ["sale", "offer", "discount", "coupon", "promotion"],
+        "verification": ["verify", "verification code", "confirm your email", "account activation"],
+        "social": ["@facebook.com", "@twitter.com", "@instagram.com", "@linkedin.com", "friend request", "follower"],
+        "updates": ["newsletter", "update", "news", "weekly digest", "monthly update"],
+        "finance": ["bank", "statement", "receipt", "invoice", "payment", "transaction"],
+        "spam": ["lottery", "win", "prize", "urgent help", "inheritance"],
+        "support": ["support", "help", "assistance", "ticket", "customer service"],
+        "apps": ["@appname.com", "subscription", "app update", "feature", "release note"]
+    },
+    "priority_keywords": ["urgent", "asap", "important", "high priority", "immediate"]
+}

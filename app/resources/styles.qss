@@ -1,0 +1,74 @@
+/* Main Window Styling */
+QWidget {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* QLabel Styling */
+QLabel {
+    font-size: 14px;
+    color: #555;
+}
+
+/* QLineEdit Styling */
+QLineEdit {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* QPushButton Styling */
+QPushButton {
+    font-size: 14px;
+    padding: 8px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    min-width: 100px;
+}
+
+QPushButton:disabled {
+    background-color: #ccc;
+    color: #fff;
+}
+
+QPushButton:hover {
+    background-color: #0056b3;
+}
+
+/* QListWidget Styling */
+QListWidget {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+QListWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+QListWidget::item:hover {
+    background-color: #e6f7ff;
+}
+
+QListWidget::item:selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* QTextEdit Styling */
+QTextEdit {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-top: 10px;
+}
