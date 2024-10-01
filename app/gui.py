@@ -44,54 +44,62 @@ class EmailOrganizerGUI(QMainWindow):
             self.setStyleSheet(style_file.read())
 
         # Main layout
-        layout = QVBoxLayout()
+        main_layout = QVBoxLayout()
 
-        # Email and Password Input Fields
+        # Top Section: Email and Password side by side
+        input_layout = QHBoxLayout()
+        
         self.email_label = QLabel('Email:')
         self.email_input = QLineEdit()
-        layout.addWidget(self.email_label)
-        layout.addWidget(self.email_input)
+        input_layout.addWidget(self.email_label)
+        input_layout.addWidget(self.email_input)
 
         self.password_label = QLabel('Password:')
         self.password_input = QLineEdit()
         self.password_input.setEchoMode(QLineEdit.Password)
-        layout.addWidget(self.password_label)
-        layout.addWidget(self.password_input)
+        input_layout.addWidget(self.password_label)
+        input_layout.addWidget(self.password_input)
 
-        # Status Label
-        self.status_label = QLabel('Status: Not connected')
-        layout.addWidget(self.status_label)
+        main_layout.addLayout(input_layout)
 
-        # Connect Button
+        # Connect button should take full width of its row
         self.connect_button = QPushButton('Connect')
         self.connect_button.clicked.connect(self.connect_to_email)
-        layout.addWidget(self.connect_button)
+        self.connect_button.setMaximumWidth(self.width())  # Full width button
+        main_layout.addWidget(self.connect_button)
 
-        # Number of Emails to Fetch Dropdown
+        # Status, Dropdown, and Fetch Emails Button in the same row
+        fetch_layout = QHBoxLayout()
+
+        self.status_label = QLabel('Status: Not connected')
+        fetch_layout.addWidget(self.status_label)
+
         self.num_emails_label = QLabel('Number of Emails to Fetch:')
         self.num_emails_dropdown = QComboBox()
         self.num_emails_dropdown.addItems([str(i) for i in range(10, 151, 10)])  # Dropdown from 10 to 150
-        layout.addWidget(self.num_emails_label)
-        layout.addWidget(self.num_emails_dropdown)
+        fetch_layout.addWidget(self.num_emails_label)
+        fetch_layout.addWidget(self.num_emails_dropdown)
 
-        # Fetch Emails Button
         self.fetch_button = QPushButton('Fetch Emails')
-        self.fetch_button.setEnabled(False)
+        self.fetch_button.setEnabled(False)  # Initially disabled until connection is made
         self.fetch_button.clicked.connect(self.start_fetching_emails)
-        layout.addWidget(self.fetch_button)
+        fetch_layout.addWidget(self.fetch_button)
 
-        # Email List with Categories and Priority
+        main_layout.addLayout(fetch_layout)
+
+        # Email List with Categories and Priority (This section gets bigger with the new layout)
         self.email_list = QListWidget()
-        layout.addWidget(self.email_list)
+        main_layout.addWidget(self.email_list)
 
-        # Log Output Area
+        # Log Output Area - Shrunk in size
         self.log_output = QTextEdit()
         self.log_output.setReadOnly(True)
-        layout.addWidget(self.log_output)
+        self.log_output.setFixedHeight(100)
+        main_layout.addWidget(self.log_output)
 
         # Set the layout
         container = QWidget()
-        container.setLayout(layout)
+        container.setLayout(main_layout)
         self.setCentralWidget(container)
 
     def connect_to_email(self):
@@ -103,7 +111,7 @@ class EmailOrganizerGUI(QMainWindow):
             self.email_client.login()
             self.status_label.setText('Status: Connected')
             self.log_output.append('Connected to email successfully.')
-            self.fetch_button.setEnabled(True)
+            self.fetch_button.setEnabled(True)  # Enable the fetch button after a successful connection
         except Exception as e:
             self.status_label.setText('Status: Connection Failed')
             self.log_output.append(f'Failed to connect: {str(e)}')
@@ -149,7 +157,10 @@ class EmailOrganizerGUI(QMainWindow):
 
     def closeEvent(self, event):
         if self.email_client:
-            self.email_client.close()
+            try:
+                self.email_client.close()
+            except Exception as e:
+                print(f"Error during IMAP logout: {str(e)}")  # Log the error but do not raise it
         if self.fetch_thread and self.fetch_thread.isRunning():
             self.fetch_thread.quit()
             self.fetch_thread.wait()
