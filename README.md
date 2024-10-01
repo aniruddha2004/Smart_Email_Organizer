@@ -10,39 +10,13 @@ The Intelligent Email Organizer is a Python-based application that categorizes, 
 - **Automated Actions**: Mark emails as read, delete, or archive based on rules.
 - **GUI with PyQt5**: Easy-to-use interface for email management.
 
-## Directory Structure
-email_organizer/
-├── app/
-│   ├── init.py
-│   ├── email_client.py
-│   ├── categorizer.py
-│   ├── prioritizer.py
-│   ├── actions.py
-│   ├── utils.py
-│   ├── config.json
-│   └── resources/
-│       ├── icon.png
-│       └── styles.qss
-├── data/
-│   ├── processed_emails.json
-│   └── action_logs.txt
-├── tests/
-│   ├── test_email_client.py
-│   ├── test_categorizer.py
-│   ├── test_prioritizer.py
-│   ├── test_actions.py
-│   └── init.py
-├── venv/
-├── requirements.txt
-└── main.py
-
-### Installation
+## Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone [https://github.com/your_username/intelligent-email-organizer.git](https://github.com/your_username/intelligent-email-organizer.git)
-   cd intelligent-email-organizer
+   git clone [https://github.com/aniruddha2004/Smart_Email_Organizer.git](https://github.com/aniruddha2004/Smart_Email_Organizer.git)
+   cd Smart_Email_Organizer
    ```
 
 2. **Create a Virtual Environment:**
@@ -69,7 +43,7 @@ email_organizer/
    - Edit the config.json file under app/ to add your IMAP and SMTP server details if required.
    - Alternatively, you can enter your email and password directly in the GUI during runtime.
 
-### Usage
+## Usage
 
 1. **Run the Application:**
 
@@ -84,7 +58,7 @@ email_organizer/
    - Use the dropdown to select the number of emails to fetch.
    - Click the `Fetch Emails` button to start fetching and organizing your emails.
 
-### Testing
+## Testing
 
 1. **Run Unit Tests:**
 
@@ -92,7 +66,7 @@ email_organizer/
    pytest tests/
    ```
 
-### Dependencies
+## Dependencies
 
 - Python 3.7+
 - PyQt5
@@ -100,7 +74,7 @@ email_organizer/
 - email
 - json
 
-### Contributing
+## Contributing
 
 1. Fork the repository.
 2. Create a new branch (git checkout -b feature-branch).
